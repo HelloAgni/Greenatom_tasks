@@ -9,6 +9,6 @@ python -m venv venv
 . venv/scripts/activate 
 # Linux
 . venv/bin/activate
-pip install --upgrade pip
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
