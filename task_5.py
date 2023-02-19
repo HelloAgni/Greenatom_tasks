@@ -9,6 +9,14 @@ therefore 1.10 > 1.1.
 import re
 
 
+def simple_compare(a, b):
+    if a < b:
+        return -1
+    if a == b:
+        return 0
+    return 1
+
+
 def compare(a, b):
     """
     Сравнение версий с исходными типами int, float, str
@@ -30,11 +38,14 @@ def compare(a, b):
     return 0
 
 
-assert compare(1.11, 1.12) == -1, 'A is older than B'
-assert compare(1.11, 1.11) == 0, 'A equivalent B'
-assert compare(1.12, 1.11) == 1, 'A is newer than B'
-assert compare('1.0.1.2', '1.0.3') == -1, 'A is older than B'
-assert compare('1.0.1.2', '1.0.1.2') == 0, 'A equivalent B'
-assert compare('1.0.2.2', '1.0.1') == 1, 'A is newer than B'
-assert compare('1-2021', '1-2021') == 0, 'A equivalent B'
-assert compare('2,023', '2,023') == 0, 'A equivalent B'
+assert simple_compare(1.11, 1.12) == -1, 'A is older than B'
+assert simple_compare(1.11, 1.11) == 0, 'A equivalent B'
+assert simple_compare(1.12, 1.11) == 1, 'A is newer than B'
+assert simple_compare('1.0.1.2', '1.0.3') == -1, 'A is older than B'
+assert simple_compare('1.0.1.2', '1.0.1.2') == 0, 'A equivalent B'
+assert simple_compare('1.0.2.2', '1.0.1') == 1, 'A is newer than B'
+assert simple_compare('1-2021', '1-2021') == 0, 'A equivalent B'
+assert simple_compare('2,023', '2,023') == 0, 'A equivalent B'
+
+assert compare('1.2021', '1,2021') == 0, 'A equivalent B'
+assert compare('1.2021', '1-2021') == 0, 'A equivalent B'
